@@ -1,14 +1,78 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { useState, useEffect } from 'react';
+import Sidebar from '@/components/Sidebar';
+import ChatList from '@/components/ChatList';
+import ChatWindow from '@/components/ChatWindow';
 
-const Index = () => {
+type Section = 'chats' | 'groups' | 'channels' | 'contacts' | 'profile' | 'settings';
+
+export default function Index() {
+  const [activeSection, setActiveSection] = useState<Section>('chats');
+  const [selectedChatId, setSelectedChatId] = useState<string>();
+
+  useEffect(() => {
+    document.documentElement.classList.add('dark');
+  }, []);
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="text-center">
-        <h1 className="text-4xl font-bold mb-4 color-black text-black">Добро пожаловать!</h1>
-        <p className="text-xl text-gray-600">тут будет отображаться ваш проект</p>
-      </div>
+    <div className="h-screen flex overflow-hidden bg-background">
+      <Sidebar activeSection={activeSection} onSectionChange={setActiveSection} />
+      
+      {activeSection === 'chats' && (
+        <>
+          <ChatList onChatSelect={setSelectedChatId} selectedChatId={selectedChatId} />
+          <ChatWindow chatId={selectedChatId} />
+        </>
+      )}
+
+      {activeSection === 'groups' && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <p className="text-2xl mb-2">👥</p>
+            <p className="text-lg">Раздел "Группы"</p>
+            <p className="text-sm mt-2">Скоро здесь появятся ваши группы</p>
+          </div>
+        </div>
+      )}
+
+      {activeSection === 'channels' && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <p className="text-2xl mb-2">📡</p>
+            <p className="text-lg">Раздел "Каналы"</p>
+            <p className="text-sm mt-2">Скоро здесь появятся ваши каналы</p>
+          </div>
+        </div>
+      )}
+
+      {activeSection === 'contacts' && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <p className="text-2xl mb-2">📞</p>
+            <p className="text-lg">Раздел "Контакты"</p>
+            <p className="text-sm mt-2">Скоро здесь появятся ваши контакты</p>
+          </div>
+        </div>
+      )}
+
+      {activeSection === 'profile' && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <p className="text-2xl mb-2">👤</p>
+            <p className="text-lg">Раздел "Профиль"</p>
+            <p className="text-sm mt-2">Скоро здесь появится ваш профиль</p>
+          </div>
+        </div>
+      )}
+
+      {activeSection === 'settings' && (
+        <div className="flex-1 flex items-center justify-center">
+          <div className="text-center text-muted-foreground">
+            <p className="text-2xl mb-2">⚙️</p>
+            <p className="text-lg">Раздел "Настройки"</p>
+            <p className="text-sm mt-2">Скоро здесь появятся настройки</p>
+          </div>
+        </div>
+      )}
     </div>
   );
-};
-
-export default Index;
+}
