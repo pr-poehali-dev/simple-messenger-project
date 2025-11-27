@@ -1,0 +1,38 @@
+{
+  "tests": [
+    {
+      "name": "Register new user successfully",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "username": "testuser456",
+        "email": "test456@example.com",
+        "password": "password123",
+        "full_name": "Test User"
+      },
+      "expectedStatus": 201,
+      "expectedBody": {
+        "user": {
+          "username": "string",
+          "email": "string",
+          "full_name": "string"
+        },
+        "session_token": "string"
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Reject registration with short password",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "username": "testuser456",
+        "email": "test2@example.com",
+        "password": "123",
+        "full_name": "Test User 2"
+      },
+      "expectedStatus": 400,
+      "bodyMatcher": "partial"
+    }
+  ]
+}
