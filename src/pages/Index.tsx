@@ -3,6 +3,7 @@ import Sidebar from '@/components/Sidebar';
 import ChatList from '@/components/ChatList';
 import ChatWindow from '@/components/ChatWindow';
 import AuthForm from '@/components/AuthForm';
+import ContactSearch from '@/components/ContactSearch';
 
 type Section = 'chats' | 'groups' | 'channels' | 'contacts' | 'profile' | 'settings';
 
@@ -37,6 +38,7 @@ export default function Index() {
     setSessionToken(token);
     localStorage.setItem('user', JSON.stringify(userData));
     localStorage.setItem('session_token', token);
+    setActiveSection('chats');
   };
 
   const handleLogout = () => {
@@ -82,13 +84,7 @@ export default function Index() {
       )}
 
       {activeSection === 'contacts' && (
-        <div className="flex-1 flex items-center justify-center">
-          <div className="text-center text-muted-foreground">
-            <p className="text-2xl mb-2">📞</p>
-            <p className="text-lg">Раздел "Контакты"</p>
-            <p className="text-sm mt-2">Скоро здесь появятся ваши контакты</p>
-          </div>
-        </div>
+        <ContactSearch currentUserId={user.id} />
       )}
 
       {activeSection === 'profile' && (

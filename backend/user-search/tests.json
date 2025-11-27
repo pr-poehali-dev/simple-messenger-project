@@ -1,0 +1,19 @@
+{
+  "tests": [
+    {
+      "name": "Search users with valid query",
+      "method": "GET",
+      "path": "/?query=test&current_user_id=1",
+      "expectedStatus": 200
+    },
+    {
+      "name": "Search without query parameter",
+      "method": "GET",
+      "path": "/?current_user_id=1",
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "Search query is required"
+      }
+    }
+  ]
+}

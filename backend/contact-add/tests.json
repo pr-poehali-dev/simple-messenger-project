@@ -1,0 +1,31 @@
+{
+  "tests": [
+    {
+      "name": "Add contact successfully",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "user_id": 1,
+        "contact_user_id": 2
+      },
+      "expectedStatus": 200,
+      "expectedBody": {
+        "success": true
+      },
+      "bodyMatcher": "partial"
+    },
+    {
+      "name": "Reject adding yourself as contact",
+      "method": "POST",
+      "path": "/",
+      "body": {
+        "user_id": 1,
+        "contact_user_id": 1
+      },
+      "expectedStatus": 400,
+      "expectedBody": {
+        "error": "Cannot add yourself as contact"
+      }
+    }
+  ]
+}
