@@ -1,4 +1,5 @@
 {
+  "messenger-api": "https://functions.poehali.dev/b314fbf0-4800-4147-af7f-cf22beb4df1d",
   "user-search": "https://functions.poehali.dev/17351105-6be6-497f-bba1-05366001a96a",
   "contact-add": "https://functions.poehali.dev/6eba80ad-361b-49e4-acd6-449781e0f0f6",
   "auth-register": "https://functions.poehali.dev/dc3eb796-59be-4969-b6cf-9f102054d285",
